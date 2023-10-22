@@ -33,7 +33,8 @@ func main() {
 	hndlr := handler.New(db, bookCache)
 
 	r := gin.Default()
-	r.GET("/", hndlr.Get)
+	r.GET("/books", hndlr.Get)
+	r.POST("/books", hndlr.Create)
+
 	log.Println(r.Run(":8080"))
-	//r.POST("/", hndlr.Create)
 }

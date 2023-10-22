@@ -10,9 +10,6 @@ func (h *Handler) Get(ctx *gin.Context) {
 	title := ctx.Query("title")
 
 	book, err := h.BookCache.Get(ctx, title)
-	if err != nil {
-		return
-	}
 
 	if book == nil {
 		book, err = h.Repo.Get(ctx, title)
@@ -29,5 +26,10 @@ func (h *Handler) Get(ctx *gin.Context) {
 			log.Printf("could not cache book with title %s: %v", title, book)
 		}
 	}
-	ctx.JSON(http.StatusOK, book)
+
+	ctx.JSON(http.StatusOK, struct {
+		Data interface{}
+	}{
+		book,
+	})
 }
