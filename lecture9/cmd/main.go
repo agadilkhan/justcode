@@ -24,7 +24,7 @@ func main() {
 		panic(err)
 	}
 
-	err = db.DB.AutoMigrate(&entity.User{})
+	err = db.DB.AutoMigrate(&entity.User{}, &entity.Order{}, &entity.Product{}, &entity.OrderProduct{})
 	if err != nil {
 		panic(err)
 	}

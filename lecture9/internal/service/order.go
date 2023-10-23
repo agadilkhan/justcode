@@ -13,6 +13,10 @@ func (m *Manager) GetOrders(ctx context.Context) (*[]entity.Order, error) {
 	return m.Repo.GetOrders(ctx)
 }
 
+func (m *Manager) GetOrderByID(ctx context.Context, id uint) (*entity.Order, error) {
+	return m.Repo.GetOrderByID(ctx, id)
+}
+
 func (m *Manager) DeleteOrder(ctx context.Context, id uint) (uint, error) {
 	return m.Repo.DeleteOrder(ctx, id)
 }

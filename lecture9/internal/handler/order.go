@@ -22,6 +22,29 @@ func (h *Handler) GetOrders(ctx *gin.Context) {
 	})
 }
 
+func (h *Handler) GetOrderByID(ctx *gin.Context) {
+	id, err := strconv.ParseUint(ctx.Param("id"), 10, 32)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, Error{
+			Message: err.Error(),
+		})
+		return
+	}
+
+	o, err := h.Service.GetOrderByID(ctx, uint(id))
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, Error{
+			err.Error(),
+		})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, OK{
+		Message: "success",
+		Data:    o,
+	})
+}
+
 func (h *Handler) CreateOrder(ctx *gin.Context) {
 	var o entity.Order
 

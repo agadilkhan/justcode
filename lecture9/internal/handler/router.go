@@ -12,7 +12,8 @@ func (h *Handler) Init() *gin.Engine {
 	order := router.Group("/orders")
 	order.Use(JWTVerify())
 	order.GET("/", h.GetOrders)
-	order.POST("/:id", h.CreateOrder)
+	order.POST("/", h.CreateOrder)
+	order.GET("/:id", h.GetOrderByID)
 	order.PUT("/:id", h.UpdateOrder)
 	order.DELETE("/:id", h.DeleteOrder)
 	return router

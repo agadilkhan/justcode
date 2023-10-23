@@ -44,3 +44,11 @@ func (p *Postgres) UpdateOrder(ctx context.Context, o *entity.Order) (*entity.Or
 
 	return oldOrder, res.Error
 }
+
+func (p *Postgres) GetOrderByID(ctx context.Context, id uint) (*entity.Order, error) {
+	var o entity.Order
+
+	res := p.DB.WithContext(ctx).Where("id=?", id).Find(&o)
+
+	return &o, res.Error
+}
