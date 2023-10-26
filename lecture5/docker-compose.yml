@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  postgres_lecture5:
+    container_name: postgres_lecture5
+    image: postgres:latest
+    ports:
+      - "5342:5432"
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: Alfarabi2004
+    volumes:
+      - ./pg_data:/var/lib/postgresql
