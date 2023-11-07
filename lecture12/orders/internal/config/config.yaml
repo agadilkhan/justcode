@@ -1,0 +1,9 @@
+http:
+  port: '8081'
+  shutdown_timeout: 30s
+  read_timeout: 30s
+  write_timeout: 30s
+pg:
+  url:
+jwt:
+  secret_key: 'fjiqjdiewq'

@@ -1,0 +1,11 @@
+http:
+  port: '8080'
+  timeout: 30s
+  shutdown_timeout: 30s
+  read_timeout: 30s
+  write_timeout: 30s
+pg:
+  url:
+jwt:
+  secret_key: 'fjiqjdiewq'
+  access_token_ttl: 900

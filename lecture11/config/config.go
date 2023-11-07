@@ -7,7 +7,7 @@ import (
 )
 
 type Config struct {
-	HTTP HTTPConfig `yaml:"http"`
+	HTTP HTTPConfig `yaml:"httpserver"`
 	DB   DBConfig   `yaml:"db"`
 }
 
