@@ -2,10 +2,13 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
 	"lecture10/handler"
 	"lecture10/repo/cache"
 	"lecture10/repo/pg"
 	"log"
+	"net/http"
 )
 
 func main() {
@@ -36,5 +39,13 @@ func main() {
 	r.GET("/books", hndlr.Get)
 	r.POST("/books", hndlr.Create)
 
-	log.Println(r.Run(":8080"))
+	go func() {
+		r.Run(":8080")
+	}()
+
+	chiRouter := chi.NewRouter()
+	chiRouter.Mount("/debug", middleware.Profiler())
+	go func() {
+		http.ListenAndServe(":8081", chiRouter)
+	}()
 }
